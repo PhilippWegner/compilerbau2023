@@ -38,6 +38,21 @@ public class TokenScanner {
         return tokenArrayList;
     }
 
+    public ArrayList<Character> split()
+    {
+        ArrayList<Character> chars = new ArrayList<>();
+
+        for(char c : input.toCharArray())
+        {
+            if(!Character.isWhitespace(c))
+            {
+                chars.add(c);
+            }
+
+        }
+        return chars;
+    }
+
     private Token identify(char token) {
         return switch(token) {
             case '+' -> Token.Add;
