@@ -1,7 +1,6 @@
 public enum Token {
     Invalid,
     Letter,
-
     Number,
     Add,
     Subtract,
