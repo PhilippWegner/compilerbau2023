@@ -5,26 +5,33 @@ public class ParseTreeConverter {
     // create a method that gets a list of tokens and orders them into a parse tree
     // tokens consist of numbers and the operator +
 
-    public static ArrayList<Token> convertToParseTree(ArrayList<Token> tokens) {
+    public  ArrayList<Token> convertToParseTree(ArrayList<Token> tokens) {
         // create a parse tree
         ArrayList<Token> parseTree = new ArrayList<Token>();
         // create a stack
         ArrayList<Token> stack = new ArrayList<Token>();
-
-        // if a number follows a number, interpret them as a single number
-        // else proceed as normal
-        for(int i = 0; i < tokens.size(); i++) {
-            if(tokens.get(i) == Token.Number){
-                if(parseTree.isEmpty() || parseTree.get(parseTree.size()-1) != Token.Number) {
+        // check if the tokens contains Token.Invalid
+        if (tokens.contains(Token.Invalid)) {
+            // if it does, return an error Message
+            System.out.println("Error: Invalid Token");
+            return null;
+        }
+        for (int i= 0; i < tokens.size(); i++){
+            Token currentToken = tokens.get(i);
+            if (currentToken == Token.Start){
+                parseTree.add(Token.Start);
+            } else if (currentToken == Token.End) {
+                parseTree.add(Token.End);
+            } else if (currentToken == Token.Number) {
+                if (tokens.get(i + 1) == Token.Add) {
                     parseTree.add(Token.Number);
                 }
-            } else{
-                parseTree.add(tokens.get(i));
-
+            } else if (currentToken == Token.Add) {
+                if (tokens.get(i + 1) == Token.Number) {
+                    parseTree.add(Token.Add);
+                }
             }
-
         }
-
 
         return parseTree;
     }
@@ -39,12 +46,22 @@ public class ParseTreeConverter {
                 number   number
 
     */
-    public static void printParseTree(ArrayList<Token> parseTree) {
+    public void printParseTree(ArrayList<Token> parseTree) {
         int level = 0;
         String tab = "";
+        if (parseTree == null) {
+            System.out.println("Error: Equation is invalid");
+            return;
+        }
         for (int i = 0; i < parseTree.size(); i++) {
-            for (int j = 0; j < level; j++) {
-                tab += " ";
+            tab += " ";
+
+            if (parseTree.get(i) == Token.Start){
+                System.out.println(tab + "start");
+                System.out.println(tab + "  |");
+            }
+            if (parseTree.get(i) == Token.End){
+                System.out.println(tab + "end");
             }
             if (parseTree.get(i) == Token.Number) {
                 System.out.println(tab + "  number");

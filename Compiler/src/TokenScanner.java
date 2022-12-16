@@ -37,6 +37,27 @@ public class TokenScanner {
         }
         return tokenArrayList;
     }
+    public ArrayList<Token> tokenizeTest(){
+        /* return a list of tokens for the file
+        start
+        555 + 5 + 5 + 5
+        end
+         */
+        ArrayList<Token> tokenArrayList = new ArrayList<>();
+        tokenArrayList.add(Token.Invalid);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.Add);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.Add);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.Add);
+        tokenArrayList.add(Token.Number);
+        tokenArrayList.add(Token.End);
+        return tokenArrayList;
+
+    }
 
     public ArrayList<Character> split()
     {

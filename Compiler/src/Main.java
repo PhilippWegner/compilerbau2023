@@ -5,7 +5,7 @@ public class Main {
         TokenScanner scanner = new TokenScanner("Compiler\\resources\\input.txt");
         scanner.scan();
         System.out.println("Input: "+ scanner.input+"\n");
-        ArrayList<Token> tokens = scanner.tokenize();
+        ArrayList<Token> tokens = scanner.tokenizeTest();
         //System.out.println("Tokens: \n");
         ParseTreeConverter converter = new ParseTreeConverter();
         ArrayList<Token> parseTree = converter.convertToParseTree(tokens);

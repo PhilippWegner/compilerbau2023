@@ -1,7 +1,35 @@
-number -> number operator number
-number -> LeftPar number RightPar
-number -> end
+file has to start with "start" keyword
 
-operator -> number
+file has to end with "end" keyword
 
-LeftPar
+after the "start" keyword, there has to be an equation
+
+equations start with numbers, followed by an operator
+
+operators are +, -, *, /, ^
+
+and operator can be followed up by another number or a LeftParenthesis
+
+A LeftParenthesis can be followed by a number or another LeftParenthesis
+
+a RightParenthesis can be followed by an operator or a RightParenthesis
+
+
+file -> start
+
+start -> equation
+
+equation -> number operator
+
+operator -> + | - | * | / | ^
+
+operator -> number | LeftParenthesis
+
+LeftParenthesis -> number | LeftParenthesis
+
+RightParenthesis -> operator | RightParenthesis
+
+number -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+number -> number number
+

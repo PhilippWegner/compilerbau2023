@@ -8,5 +8,7 @@ public enum Token {
     Divide,
     LeftParenthesis,
     RightParenthesis,
+    Start,
+    End,
     Whitespace
 }
