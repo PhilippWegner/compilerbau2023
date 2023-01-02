@@ -1,33 +1,35 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParseTreeConverter {
 
     // create a method that gets a list of tokens and orders them into a parse tree
     // tokens consist of numbers and the operator +
 
-    public  ArrayList<Token> convertToParseTree(ArrayList<Token> tokens) {
+    public  ArrayList<Token> convertToParseTree(HashMap<Token, String> tokens) {
         // create a parse tree
         ArrayList<Token> parseTree = new ArrayList<Token>();
         // create a stack
         ArrayList<Token> stack = new ArrayList<Token>();
         // check if the tokens contains Token.Invalid
-        if (tokens.contains(Token.Invalid)) {
+        if (tokens.containsKey(Token.Invalid)) {
             // if it does, return an error Message
             System.out.println("Error: Invalid Token");
             return null;
         }
-        for (int i= 0; i < tokens.size(); i++){
-            Token currentToken = tokens.get(i);
+        for (Map.Entry<Token,String> entry : tokens.entrySet()){
+            Token currentToken = entry.getKey();
             if (currentToken == Token.Start){
                 parseTree.add(Token.Start);
             } else if (currentToken == Token.End) {
                 parseTree.add(Token.End);
             } else if (currentToken == Token.Number) {
-                if (tokens.get(i + 1) == Token.Add) {
+                if (tokens.get(i + 1) == Token.Add) { //todo get next Key from tokens
                     parseTree.add(Token.Number);
                 }
             } else if (currentToken == Token.Add) {
-                if (tokens.get(i + 1) == Token.Number) {
+                if (tokens.get(i + 1) == Token.Number) { //todo same shit here
                     parseTree.add(Token.Add);
                 }
             }

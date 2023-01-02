@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TokenScanner {
@@ -26,35 +27,35 @@ public class TokenScanner {
         this.input = sb.toString();
     }
 
-    public ArrayList<Token> tokenize()
+    public HashMap<Token,String> tokenize()
     {
-        ArrayList<Token> tokenArrayList = new ArrayList<>();
-        for(char token : input.toCharArray())
+        HashMap<Token,String> tokenArrayList = new HashMap<>();
+        for(Character token : input.toCharArray())
         {
-            Token t = identify(token);
-            if(!t.equals(Token.Whitespace)) // Skip Whitespaces
-                tokenArrayList.add(t);
+            Token tokenType = identify(token);
+            if(!tokenType.equals(Token.Whitespace)) // Skip Whitespaces
+                tokenArrayList.put(tokenType,token.toString());
         }
         return tokenArrayList;
     }
-    public ArrayList<Token> tokenizeTest(){
+    public HashMap<Token,String> tokenizeTest(){
         /* return a list of tokens for the file
         start
         555 + 5 + 5 + 5
         end
          */
-        ArrayList<Token> tokenArrayList = new ArrayList<>();
-        tokenArrayList.add(Token.Invalid);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.Add);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.Add);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.Add);
-        tokenArrayList.add(Token.Number);
-        tokenArrayList.add(Token.End);
+        HashMap<Token,String> tokenArrayList = new HashMap<>();
+        tokenArrayList.put(Token.Invalid,"?");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.Add,"+");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.Add,"+");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.Add,"+");
+        tokenArrayList.put(Token.Number,"5");
+        tokenArrayList.put(Token.End,"end");
         return tokenArrayList;
 
     }
